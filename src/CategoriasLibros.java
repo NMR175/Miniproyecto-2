@@ -1,4 +1,4 @@
-public class CategoriasLibros {
+public class CategoriasLibros{
     String nombreCategoria;
     public Lista_libros listaLibros;
 

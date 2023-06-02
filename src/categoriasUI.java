@@ -5,14 +5,29 @@ import java.awt.event.ActionListener;
 import javax.swing.border.EmptyBorder;
 
 
-public class categoriasUI {
+public class categoriasUI  extends LoginApp{
 
-    private static void ventana(){
+
+    //Creo un objeto e inicializo los atributos para ese objeto basandome en la categoria
+    static CategoriasLibros categoriaTerror = new CategoriasLibros("Terror");
+    static CategoriasLibros categoriaNovelasClasicas = new CategoriasLibros("Novelas Clasicas");
+
+    static CategoriasLibros categoriaIngenieria = new CategoriasLibros("Ingenieria");
+
+
+    public categoriasUI(){
+        //Inicializo los atributos de cada una de las categorias
+        categoriaTerror.inicializarCategoriaTerror();
+        categoriaNovelasClasicas.inicializarCategoriaNovelasClasicas();
+        categoriaIngenieria.inicializarCategoriaIngenieria();
+    }
+
+    public static void ventana(){
 
 
         //Crear el marco de la ventana
         JFrame Ventana = new JFrame("Categorias");
-        Ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         Ventana.setSize(400,300);
 
         //Crear un panel
@@ -172,9 +187,8 @@ public class categoriasUI {
         //Condicionales para asignar los libros a cada una de las etiquetas
         if (categoria == 1){
 
-            //Creo un objeto e inicializo los atributos para ese objeto basandome en la categoria
-            CategoriasLibros categoriaTerror = new CategoriasLibros("Terror");
-            categoriaTerror.inicializarCategoriaTerror();
+
+
 
 
 
@@ -185,11 +199,11 @@ public class categoriasUI {
                 public void actionPerformed(ActionEvent e) {
                     boolean estado = true;
 
-
+                    //Las acciones de los botones estaran separadas por categorias
 
                     JButton botonPresionado = (JButton) e.getSource();
 
-                    //Las acciones de los botones estaran separadas por categorias
+
 
                     //Asignacion de la accion que ejecutara un boton presionado en especifico
                     //En este caso cuando un boton es presionado y el estado de libro es falso se mostrara un mensaje
@@ -198,6 +212,9 @@ public class categoriasUI {
                     if (botonPresionado == boton1 && categoriaTerror.getEstadoLibro(posicion1) == !estado){
                         categoriaTerror.setEstadoLibro(posicion1,estado);
                         JOptionPane.showMessageDialog(null, "Has seleccionado el libro");
+                        //Adiciono el ID del libro al usuario
+                        clientUser.ID_libros_usuario.add(categoriaTerror.getIDLibro(posicion1));
+
                     }
                     else if (botonPresionado == boton1 && categoriaTerror.getEstadoLibro(posicion1) == estado){
                         JOptionPane.showMessageDialog(null, "El libro no esta disponible");
@@ -207,6 +224,8 @@ public class categoriasUI {
                     else if(botonPresionado == boton2 && categoriaTerror.getEstadoLibro(posicion2) == !estado){
                         categoriaTerror.setEstadoLibro(posicion2,estado);
                         JOptionPane.showMessageDialog(null, "Has seleccionado el libro");
+                        //Adiciono el ID del libro al usuario
+                        clientUser.ID_libros_usuario.add(categoriaTerror.getIDLibro(posicion2));
                     }
                     else if (botonPresionado == boton2 && categoriaTerror.getEstadoLibro(posicion2) == estado){
                         JOptionPane.showMessageDialog(null, "El libro no esta disponible");
@@ -216,6 +235,8 @@ public class categoriasUI {
                     else if(botonPresionado == boton3 && categoriaTerror.getEstadoLibro(posicion3) == !estado){
                         categoriaTerror.setEstadoLibro(posicion3,estado);
                         JOptionPane.showMessageDialog(null, "Has seleccionado el libro");
+                        //Adiciono el ID del libro al usuario
+                        clientUser.ID_libros_usuario.add(categoriaTerror.getIDLibro(posicion3));
                     }
                     else if (botonPresionado == boton3 && categoriaTerror.getEstadoLibro(posicion3) == estado){
                         JOptionPane.showMessageDialog(null, "El libro no esta disponible");
@@ -225,6 +246,8 @@ public class categoriasUI {
                     else if(botonPresionado == boton4 && categoriaTerror.getEstadoLibro(posicion4) == !estado){
                         categoriaTerror.setEstadoLibro(posicion4,estado);
                         JOptionPane.showMessageDialog(null, "Has seleccionado el libro");
+                        //Adiciono el ID del libro al usuario
+                        clientUser.ID_libros_usuario.add(categoriaTerror.getIDLibro(posicion4));
                     }
                     else if (botonPresionado == boton4 && categoriaTerror.getEstadoLibro(posicion4) == estado){
                         JOptionPane.showMessageDialog(null, "El libro no esta disponible");
@@ -234,6 +257,8 @@ public class categoriasUI {
                     else if(botonPresionado == boton5 && categoriaTerror.getEstadoLibro(posicion5) == !estado){
                         categoriaTerror.setEstadoLibro(posicion5,estado);
                         JOptionPane.showMessageDialog(null, "Has seleccionado el libro");
+                        //Adiciono el ID del libro al usuario
+                        clientUser.ID_libros_usuario.add(categoriaTerror.getIDLibro(posicion5));
                     }
                     else if (botonPresionado == boton5 && categoriaTerror.getEstadoLibro(posicion5) == estado){
                         JOptionPane.showMessageDialog(null, "El libro no esta disponible");
@@ -279,10 +304,6 @@ public class categoriasUI {
         }
         else if (categoria == 2){
 
-            //Inicializo los atributos de la categoria novelas clasicas
-            CategoriasLibros categoriaNovelasClasicas = new CategoriasLibros("Novelas Clasicas");
-            categoriaNovelasClasicas.inicializarCategoriaNovelasClasicas();
-
 
             //Accion para los botones de seleccionar
             ActionListener actionListener = new ActionListener() {
@@ -303,6 +324,9 @@ public class categoriasUI {
                     if (botonPresionado == boton1 && categoriaNovelasClasicas.getEstadoLibro(posicion1) == !estado){
                         categoriaNovelasClasicas.setEstadoLibro(posicion1,estado);
                         JOptionPane.showMessageDialog(null, "Has seleccionado el libro");
+                        //Adiciono el ID del libro al usuario
+                        clientUser.ID_libros_usuario.add(categoriaNovelasClasicas.getIDLibro(posicion1));
+
                     }
                     else if (botonPresionado == boton1 && categoriaNovelasClasicas.getEstadoLibro(posicion1) == estado){
                         JOptionPane.showMessageDialog(null, "El libro no esta disponible");
@@ -312,6 +336,8 @@ public class categoriasUI {
                     else if(botonPresionado == boton2 && categoriaNovelasClasicas.getEstadoLibro(posicion2) == !estado){
                         categoriaNovelasClasicas.setEstadoLibro(posicion2,estado);
                         JOptionPane.showMessageDialog(null, "Has seleccionado el libro");
+                        //Adiciono el ID del libro al usuario
+                        clientUser.ID_libros_usuario.add(categoriaNovelasClasicas.getIDLibro(posicion2));
                     }
                     else if (botonPresionado == boton2 && categoriaNovelasClasicas.getEstadoLibro(posicion2) == estado){
                         JOptionPane.showMessageDialog(null, "El libro no esta disponible");
@@ -321,6 +347,8 @@ public class categoriasUI {
                     else if(botonPresionado == boton3 && categoriaNovelasClasicas.getEstadoLibro(posicion3) == !estado){
                         categoriaNovelasClasicas.setEstadoLibro(posicion3,estado);
                         JOptionPane.showMessageDialog(null, "Has seleccionado el libro");
+                        //Adiciono el ID del libro al usuario
+                        clientUser.ID_libros_usuario.add(categoriaNovelasClasicas.getIDLibro(posicion3));
                     }
                     else if (botonPresionado == boton3 && categoriaNovelasClasicas.getEstadoLibro(posicion3) == estado){
                         JOptionPane.showMessageDialog(null, "El libro no esta disponible");
@@ -330,6 +358,8 @@ public class categoriasUI {
                     else if(botonPresionado == boton4 && categoriaNovelasClasicas.getEstadoLibro(posicion4) == !estado){
                         categoriaNovelasClasicas.setEstadoLibro(posicion4,estado);
                         JOptionPane.showMessageDialog(null, "Has seleccionado el libro");
+                        //Adiciono el ID del libro al usuario
+                        clientUser.ID_libros_usuario.add(categoriaNovelasClasicas.getIDLibro(posicion4));
                     }
                     else if (botonPresionado == boton4 && categoriaNovelasClasicas.getEstadoLibro(posicion4) == estado){
                         JOptionPane.showMessageDialog(null, "El libro no esta disponible");
@@ -339,6 +369,8 @@ public class categoriasUI {
                     else if(botonPresionado == boton5 && categoriaNovelasClasicas.getEstadoLibro(posicion5) == !estado){
                         categoriaNovelasClasicas.setEstadoLibro(posicion5,estado);
                         JOptionPane.showMessageDialog(null, "Has seleccionado el libro");
+                        //Adiciono el ID del libro al usuario
+                        clientUser.ID_libros_usuario.add(categoriaNovelasClasicas.getIDLibro(posicion5));
                     }
                     else if (botonPresionado == boton5 && categoriaNovelasClasicas.getEstadoLibro(posicion5) == estado){
                         JOptionPane.showMessageDialog(null, "El libro no esta disponible");
@@ -373,10 +405,6 @@ public class categoriasUI {
         }
         else if (categoria == 3){
 
-            //Inicializo los atributos de la categoria novelas clasicas
-            CategoriasLibros categoriaIngenieria = new CategoriasLibros("Ingenieria");
-            categoriaIngenieria.inicializarCategoriaIngenieria();
-
             ActionListener actionListener = new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -395,6 +423,8 @@ public class categoriasUI {
                     if (botonPresionado == boton1 && categoriaIngenieria.getEstadoLibro(posicion1) == !estado){
                         categoriaIngenieria.setEstadoLibro(posicion1,estado);
                         JOptionPane.showMessageDialog(null, "Has seleccionado el libro");
+                        //Adiciono el ID del libro al usuario
+                        clientUser.ID_libros_usuario.add(categoriaIngenieria.getIDLibro(posicion1));
                     }
                     else if (botonPresionado == boton1 && categoriaIngenieria.getEstadoLibro(posicion1) == estado){
                         JOptionPane.showMessageDialog(null, "El libro no esta disponible");
@@ -404,6 +434,8 @@ public class categoriasUI {
                     else if(botonPresionado == boton2 && categoriaIngenieria.getEstadoLibro(posicion2) == !estado){
                         categoriaIngenieria.setEstadoLibro(posicion2,estado);
                         JOptionPane.showMessageDialog(null, "Has seleccionado el libro");
+                        //Adiciono el ID del libro al usuario
+                        clientUser.ID_libros_usuario.add(categoriaIngenieria.getIDLibro(posicion2));
                     }
                     else if (botonPresionado == boton2 && categoriaIngenieria.getEstadoLibro(posicion2) == estado){
                         JOptionPane.showMessageDialog(null, "El libro no esta disponible");
@@ -413,6 +445,8 @@ public class categoriasUI {
                     else if(botonPresionado == boton3 && categoriaIngenieria.getEstadoLibro(posicion3) == !estado){
                         categoriaIngenieria.setEstadoLibro(posicion3,estado);
                         JOptionPane.showMessageDialog(null, "Has seleccionado el libro");
+                        //Adiciono el ID del libro al usuario
+                        clientUser.ID_libros_usuario.add(categoriaIngenieria.getIDLibro(posicion3));
                     }
                     else if (botonPresionado == boton3 && categoriaIngenieria.getEstadoLibro(posicion3) == estado){
                         JOptionPane.showMessageDialog(null, "El libro no esta disponible");
@@ -422,6 +456,8 @@ public class categoriasUI {
                     else if(botonPresionado == boton4 && categoriaIngenieria.getEstadoLibro(posicion4) == !estado){
                         categoriaIngenieria.setEstadoLibro(posicion4,estado);
                         JOptionPane.showMessageDialog(null, "Has seleccionado el libro");
+                        //Adiciono el ID del libro al usuario
+                        clientUser.ID_libros_usuario.add(categoriaIngenieria.getIDLibro(posicion4));
                     }
                     else if (botonPresionado == boton4 && categoriaIngenieria.getEstadoLibro(posicion4) == estado){
                         JOptionPane.showMessageDialog(null, "El libro no esta disponible");
@@ -431,6 +467,8 @@ public class categoriasUI {
                     else if(botonPresionado == boton5 && categoriaIngenieria.getEstadoLibro(posicion5) == !estado){
                         categoriaIngenieria.setEstadoLibro(posicion5,estado);
                         JOptionPane.showMessageDialog(null, "Has seleccionado el libro");
+                        //Adiciono el ID del libro al usuario
+                        clientUser.ID_libros_usuario.add(categoriaIngenieria.getIDLibro(posicion5));
                     }
                     else if (botonPresionado == boton5 && categoriaIngenieria.getEstadoLibro(posicion5) == estado){
                         JOptionPane.showMessageDialog(null, "El libro no esta disponible");
@@ -577,11 +615,6 @@ public class categoriasUI {
         EstadosLibros.setVisible(true);
 
 
-    }
-
-
-    public static void main(String[] args){
-        ventana();
     }
 
 }
